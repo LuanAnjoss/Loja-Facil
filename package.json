@@ -1,0 +1,14 @@
+
+{
+  "name": "loja-facil",
+  "version": "1.0.0",
+  "description": "Sistema simples de comércio eletrônico desenvolvido para a prática de DevOps.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --coverage"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
