@@ -1,4 +1,3 @@
-
 const produtos = [
     { nome: "Notebook", preco: 2500 },
     { nome: "Mouse", preco: 80 },
@@ -7,14 +6,17 @@ const produtos = [
 
 function cadastrarProduto(nome, preco) {
     produtos.push({ nome, preco });
-    console.log("Produto cadastrado com sucesso!");
 }
 
-cadastrarProduto("Fone de ouvido", 120);
+if (require.main === module) {
+    cadastrarProduto("Fone de ouvido", 120);
 
-console.log("=== LOJA FÁCIL ===");
-console.log("Produtos disponíveis:");
+    console.log("=== LOJA FÁCIL ===");
+    console.log("Produtos disponíveis:");
 
-produtos.forEach((produto) => {
-    console.log(`${produto.nome} - R$ ${produto.preco}`);
-});
+    produtos.forEach((produto) => {
+        console.log(`${produto.nome} - R$ ${produto.preco}`);
+    });
+}
+
+module.exports = { produtos, cadastrarProduto };
