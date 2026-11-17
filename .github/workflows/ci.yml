@@ -1,0 +1,37 @@
+name: CI - Loja Facil
+
+on:
+  push:
+    branches: [ master, develop ]
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Executar testes
+        run: npm test
+
+      - name: Gerar artefato
+        run: |
+          mkdir -p artefato
+          zip -r artefato/loja-facil-${{ github.run_number }}.zip src tests package.json package-lock.json README.md
+
+      - name: Salvar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: loja-facil-${{ github.run_number }}
+          path: artefato/
