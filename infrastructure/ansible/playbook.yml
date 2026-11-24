@@ -1,0 +1,15 @@
+---
+- name: Preparar ambiente da Loja Facil
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    - name: Atualizar lista de pacotes
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Instalar ferramenta curl
+      ansible.builtin.apt:
+        name: curl
+        state: present

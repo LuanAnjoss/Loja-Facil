@@ -3,3 +3,7 @@ node_modules/
 coverage/
 .env
 .DS_Store
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*

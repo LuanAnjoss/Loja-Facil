@@ -1,0 +1,1 @@
+Infraestrutura da Loja Facil gerenciada pelo Terraform.

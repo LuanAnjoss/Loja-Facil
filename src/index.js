@@ -1,3 +1,6 @@
+
+const http = require("http");
+
 const produtos = [
     { nome: "Notebook", preco: 2500 },
     { nome: "Mouse", preco: 80 },
@@ -8,14 +11,20 @@ function cadastrarProduto(nome, preco) {
     produtos.push({ nome, preco });
 }
 
+const PORT = process.env.PORT || 3000;
+
 if (require.main === module) {
-    cadastrarProduto("Fone de ouvido", 120);
+    const server = http.createServer((req, res) => {
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
 
-    console.log("=== LOJA FÁCIL ===");
-    console.log("Produtos disponíveis:");
+        res.end(JSON.stringify({
+            mensagem: "Loja Fácil funcionando!",
+            produtos
+        }));
+    });
 
-    produtos.forEach((produto) => {
-        console.log(`${produto.nome} - R$ ${produto.preco}`);
+    server.listen(PORT, "0.0.0.0", () => {
+        console.log(`Loja Fácil rodando na porta ${PORT}`);
     });
 }
 
